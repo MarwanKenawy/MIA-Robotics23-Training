@@ -10,5 +10,5 @@ for i in range(3):
    shapes(img[i])
    colors(img[i])
    lines(img[i])
-   cv.imshow(f'final{i+1}',cv.resize(img[i],(1280,720)))
+   cv.imshow(f'final{i+1}',img[i])
    cv.waitKey(0)
