@@ -1,3 +1,5 @@
+#include <Timer.h>
+Timer mytime;
 int kp=2;
 int ki=5;
 int kd=1;
@@ -12,23 +14,32 @@ long rateerror;
 int yaw;
 long output;
 int pwm=3;
-long time1=0;
-long time2=0;
+int dir=2;
+
 void setup() {
   pinMode(pwm,OUTPUT);
+  pinMode(dir,OUTPUT);
   Serial.begin(9600);
   setpoint=60;//or 90
+  mytime.every(1000,routine);
 }
+void routine(){
+  while(Serial.available()==0);
+  yaw=Serial.parseInt();
+   output=pid(yaw);
+  if(output<=2&&output>=-2){
+    analogWrite(pwm,0);}
+  else if(output>2){
+    analogWrite(pwm,output);
+    digitalWrite(dir,LOW);}
+    else{
+      analogWrite(pwm,abs(output));
+      digitalWrite(dir,HIGH);}
+  }
 
 void loop() {
-while(Serial.available()==0);
-yaw=Serial.parseInt();
-output=pid(yaw);
-time2=millis();
-if((time2-time1)>1000){
-  time1=time2;
-  analogWrite(pwm,output); 
-  }
+
+mytime.update();
   
 }
 long pid(int x){
