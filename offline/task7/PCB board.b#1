@@ -1149,6 +1149,7 @@ design rules under a new name.</description>
 <contactref element="U$2" pad="A"/>
 <contactref element="U$3" pad="1"/>
 <wire x1="86.36" y1="33.02" x2="86.36" y2="27.94" width="0.508" layer="16"/>
+<wire x1="86.36" y1="24.13" x2="86.36" y2="27.94" width="0.508" layer="16"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
